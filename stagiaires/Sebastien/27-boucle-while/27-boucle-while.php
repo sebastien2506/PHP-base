@@ -1,29 +1,15 @@
 <?php
 /*
-<<<<<<< HEAD
  * Les boucles foreach
-=======
- * Les boucles while.
->>>>>>> 02328461fd24b1728ec671412115efbb993c69ab
  */
 
 echo "<p>1) Calculez la somme des entiers de 1 à 10 avec la boucle while<br>";
 
 $somme = 0;
-<<<<<<< HEAD
-$i = 0;
-while($i <= 10){
-    $somme += $i;echo "$i ";
-    $i++;
-}
-=======
 $i = 1;
-while ($i <= 10) {
-    $somme = $somme + $i;
-    $i++;
-}
+while($i <= 10) $somme += $i++;
 
->>>>>>> 02328461fd24b1728ec671412115efbb993c69ab
+
 // ligne qui doit devenir fonctionnelle :
 echo "La somme des entiers de 1 à 10 est : $somme";
 
@@ -36,39 +22,13 @@ echo "<p>2) Affichez une table de multiplication (de 1 à 10 au hasard) en utili
 // Nous pouvons utiliser la fonction mt_rand() qui est plus rapide pour générer des nombres aléatoires
 try {
     $nombre = random_int(1, 10); // Génère un nombre aléatoire entre 1 et 10
-    // si erreur, on attrape l'exception
-<<<<<<< HEAD
+    $i = 0;
+    echo "Table de multiplication de $nombre :<br>";
+    while($i <= 10)
+        echo "$i x $nombre = " . $i++ * $nombre . " | ";
 } catch (\Random\RandomException|ValueError $e) {
-    // affiche l'erreur
     echo $e->getMessage();
 }
-
-
-echo "Table de multiplication de $nombre :<br>";
-$i = 0;
-while ($i <= 10) {
-    $resultat = $nombre * $i;
-    echo "$i x $nombre = $resultat<br>";
-    $i++;
-}
-/*while($i <= 10)
-    echo "$i x $nombre = ".$nombre * $i++."<br>";*/
-=======
-} catch (\Random\RandomException $e) {
-    // affiche l'erreur
-    echo $e->getMessage();
-}
-$i = 1;
-
-while ($i <= 10) {
-    $resultat = $nombre * $i;
-    echo "$nombre x $i = $resultat<br>";
-    $i++;
-}
-
-echo "Table de multiplication de $nombre :<br>";
-
->>>>>>> 02328461fd24b1728ec671412115efbb993c69ab
 
 echo "</p>";
 
@@ -82,23 +42,11 @@ Par exemple : <br>3! = 3 x 2 x 1 = 6 <br> 5! = 5 x 4 x 3 x 2 x 1 = 120 <br>
 
 $nombre = mt_rand(3, 12);
 $factorielle = 1;
-<<<<<<< HEAD
+$i = $nombre;
+while($i > 1)
+    $factorielle *= $i--;
 
 // ligne qui doit devenir fonctionnelle :
 echo "La factorielle de $nombre est : $factorielle";
- while()
-=======
-$i = 1;
 
-while ($i <= $nombre) {
-    $factorielle = $factorielle* $i;
-    $i++;
-}
-// ligne qui doit devenir fonctionnelle :
-echo "La factorielle de $nombre est : $factorielle";
-
->>>>>>> 02328461fd24b1728ec671412115efbb993c69ab
 echo "</p>";
-
-
-
