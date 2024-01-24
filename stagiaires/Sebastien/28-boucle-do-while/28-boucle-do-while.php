@@ -4,22 +4,22 @@ include 'array.php';
 
 // On trie $depFr par ordre alphabétique en retirant les clefs
 $depFr = array_values($depFr);
+
 // On compte le nombre de pays dans le tableau $depFr
 $nbPays = count($depFr);
+
 // On initialise la variable $nbPaysParPage
 $nbPaysParPage = 20;
+
 // On calcule le nombre de pages nécessaires
 // pour afficher toutes les régions, ceil arrondit à l'entier supérieur
 $nbPages = ceil($nbPays / $nbPaysParPage);
+$page = 1;
+if(!empty($_GET['pg'])&& ctype_digit($_GET['pg'])){
+    $page = intval($_GET["pg"]);
+    if($page > $nbPages || $page < 1) $page = 1;
+}
 
-// On initialise la variable $_GET['pg'] à 1 par défaut
-$currentPage = isset($_GET['pg']) ? intval($_GET['pg']) : 1;
-
-// On s'assure que la valeur de $_GET['pg'] est dans les limites valides
-$currentPage = max(1, min($currentPage, $nbPages));
-
-// On calcule l'indice de départ pour la pagination
-$startIndex = ($currentPage - 1) * $nbPaysParPage;
 ?>
 
 <!DOCTYPE html>
@@ -43,27 +43,27 @@ $startIndex = ($currentPage - 1) * $nbPaysParPage;
     <h2>Les régions de France</h2>
     
     <!-- Affichage de la pagination -->
-    <div>
+    <nav>
         <?php
-        // Boucle do-while pour afficher les liens de pagination
-        $page = 1;
-        do {
-            echo '<a href="?pg=' . $page . '">' . $page . '</a> ';
-            $page++;
-        } while ($page <= $nbPages);
+        $i = 1;
+        do{
         ?>
-    </div>
-
-    <h4>Liste des régions</h4>
+            <a href='?pg=<?= $i ?>'> <?= $i++ ?></a>
+        <?php
+        }while($i <= $nbPages);
+        ?>
+    </nav>
     <ul>
-        <?php
-        // Affichage des régions pour la page actuelle
-        for ($i = $startIndex; $i < min($startIndex + $nbPaysParPage, $nbPays); $i++) {
-            echo '<li>' . $depFr[$i] . '</li>';
-        }
-        ?>
+    <?php
+    $i = ($page - 1) * $nbPaysParPage;
+    do{
+        if($i >= $nbPays) break;
+    ?>
+        <li> <?= $depFr[$i++] ?> </li>
+    <?php
+    }while($i < $nbPaysParPage * $page);
+    ?>
     </ul>
-
     <!-- Affichage de la pagination en bas de la liste des régions -->
     <div>
         <?php
