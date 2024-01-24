@@ -55,7 +55,7 @@ $factorielle = 1;
 
 // ligne qui doit devenir fonctionnelle :
 echo "La factorielle de $nombre est : $factorielle";
-
+ while()
 echo "</p>";
 
 
